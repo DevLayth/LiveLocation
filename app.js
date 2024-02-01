@@ -1,8 +1,10 @@
 const express = require('express');
 const socketIo = require('socket.io');
 const http = require('http')
+const cors = require('cors')
 
 const app = express();
+app.use(cors());
 const server = http.createServer(app)
 
 const io = socketIo(server)
@@ -18,8 +20,8 @@ io.on("connection",(clinet)=>{
     })
 })
 
- server.listen(5000,function(){
-    console.log('Server is runing at http://localhost:5000');
+ server.listen(process.env.Port||8080,function(){
+    console.log('Server is runing at http://localhost:8080');
 });
 
 
